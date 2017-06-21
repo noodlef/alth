@@ -12,7 +12,7 @@ namespace templa {
 		void push(const T1 &e);
 		T1 pop();
 	private:
-		T1 *ptr;                                                                // 
+		T1 *ptr;                                                                // github test
 		T1 *stackBottom;                                                        // 栈底
 		size_t elementCnt;                                                      // 包含元素个数
 		size_t sz;                                                              // 分配的空间大小
