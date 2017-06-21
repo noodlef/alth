@@ -15,8 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tree\stack.h">
+    <ClInclude Include="tree\PriorityQueue.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="tree\Queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tree\源.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

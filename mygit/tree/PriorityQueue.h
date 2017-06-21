@@ -24,10 +24,10 @@ public:
 	Data<T1, T2> extractMin();
 	void incrementKey(const SatalliteData &d, const KeyType &increment);
 	size_t Size() const { return elementCnt; }
-	PriorityQueue(const PriorityQueue &q) = delete;                                         //½ûÖ¹¿½±´¹¹Ôì
-	PriorityQueue& operator=(const PriorityQueue &q) = delete;                              //½ûÖ¹¿½±´¸³Öµ
 	~PriorityQueue() { delete[] ptr; };
 private:
+	PriorityQueue(const PriorityQueue &q) = delete;                                         //½ûÖ¹¿½±´¹¹Ôì
+	PriorityQueue& operator=(const PriorityQueue &q) = delete;                              //½ûÖ¹¿½±´¸³Öµ
 	struct ElementType {
 		KeyType key;                                                                      
 		SatalliteData element;

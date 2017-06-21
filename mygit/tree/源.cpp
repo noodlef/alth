@@ -1,5 +1,5 @@
-
-#include"pri.h"
+#include"Queue.h"
+#include<string>
 #include<iostream>
 #include<fstream>
 using namespace std;
@@ -54,6 +54,13 @@ int main()
 		////temp = tree.predecessorKey(9);
 		////std::cout << temp.key << " " << temp.p << std::endl;
 		//print(cout, tree);
+	Queue<std::string> q;
+	
+	for (int i = 0; i != 10; ++i) {
+		string s (i,'s');
+		q.push_front(s);
+	}
+	std::cout << q[5];
 	    system("pause");
 	    return 0;
 }
