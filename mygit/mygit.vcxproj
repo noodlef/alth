@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="tree\PriorityQueue.h" />
     <ClInclude Include="tree\Queue.h" />
+    <ClInclude Include="tree\Sort.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tree\源.cpp" />

@@ -1,4 +1,5 @@
 #include"Queue.h"
+#include"Sort.h"
 #include<string>
 #include<iostream>
 #include<fstream>
@@ -39,6 +40,12 @@ template<class T, int size = 20>
 class arry {
 	int a[size];
 };
+bool compare(int lhs, int rhs) {
+	if (lhs > rhs)
+		return true;
+	else
+		return false;
+}
 int main()
 {
 
@@ -54,13 +61,15 @@ int main()
 		////temp = tree.predecessorKey(9);
 		////std::cout << temp.key << " " << temp.p << std::endl;
 		//print(cout, tree);
-	Queue<std::string> q;
+	    Queue<int> q;
 	
-	for (int i = 0; i != 10; ++i) {
-		string s (i,'s');
-		q.push_front(s);
-	}
-	std::cout << q[5];
+	    for (int i = 0; i != 10; ++i) {
+		       q.push_back(i);
+	    }
+		templa::quickSort(q.begin(), q.end(), compare);
+		for (int i = 0; i != 10; ++i) {
+			std::cout << q[i] << std::endl;
+		}
 	    system("pause");
 	    return 0;
 }
