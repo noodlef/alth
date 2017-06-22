@@ -24,6 +24,9 @@
     <ClInclude Include="tree\Sort.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="tree\LinkList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tree\BFS.cpp">
