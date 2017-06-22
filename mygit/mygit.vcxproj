@@ -24,7 +24,7 @@
     <ClInclude Include="tree\Sort.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tree\源.cpp" />
+    <ClCompile Include="tree\BFS.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{372D2894-C245-44BA-8B7E-D963BBB30CEC}</ProjectGuid>
