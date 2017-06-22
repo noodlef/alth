@@ -62,7 +62,7 @@ operator++(Queue<T1>::iterator it){
 }
 //*****************************************************
 template<typename T1>
-Queue<T1>::iterator Queue<T1>::           //wdwdq
+Queue<T1>::iterator Queue<T1>::           //efea
 begin() const {
 	return head;
 }
