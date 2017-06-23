@@ -4,6 +4,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include"stack.h"
 #include"Queue.h"
 //*********************************************************************
 enum Color{WHITE, BLACK, GREY, INFINITE = 65535, NIL = -1};
@@ -123,6 +124,42 @@ void property(templa::LinkList<Edge> list[], size_t vertexNum) {
 	}
 }
 //********************************************************************
+// 深度优先搜索———非递归调用方式
+void deepFirstSearch() {
+	templa::LinkList<Edge> list[vertexNum];   //邻接表表示边
+	init(list, vertexNum);
+	templa::Stack<size_t> myStack;
+	for (size_t i = 0; i != vertexNum; ++i) {
+		size_t vertex = vertexNum - i - 1;                                //              i
+		myStack.push(vertex);
+	}
+	size_t time = 0;
+	while (!myStack.stackEmpty()) {
+		size_t vertex = myStack.pop();
+		if (node[vertex].color == WHITE) {
+			++time;
+			node[vertex].sTime = time;
+			node[vertex].color = GREY;
+			myStack.push(vertex);
+			size_t counter = list[vertex].size();
+			for (size_t i = 0; i != counter; ++i) {
+				size_t t = list[vertex][counter - i - 1].tail;                       // i
+				if (node[t].color == WHITE) {
+					node[t].parent = vertex;
+					myStack.push(t);
+				}
+			}
+		}
+		else if (node[vertex].color == GREY) {
+			++time;
+			node[vertex].fTime = time;
+			node[vertex].color = BLACK;
+		}
+	}
+	property(list, vertexNum);                                                 // 求出深度优先搜索过程中条边的属性
+}
+//********************************************************************
+//深度优先搜索————递归调用方式
 void DFS_VISIT(size_t index, templa::LinkList<Edge> list[], size_t &time) {
 	++time;
 	node[index].sTime = time;
@@ -170,9 +207,10 @@ void printDFS(std::ostream &os, Vertex node[], size_t vertexNum) {
 //*********************************************************************
 int main() {
 	//DFS();
-	//printDFS(std::cout, node, 6);
-	BFS();
-	printBFS(std::cout, node,6, 1);
+	deepFirstSearch();
+	printDFS(std::cout, node, 6);
+	//BFS();
+	//printBFS(std::cout, node,6, 1);
 	system("pause");
 	return 0;
 }

@@ -23,6 +23,7 @@
     <ClInclude Include="tree\PriorityQueue.h" />
     <ClInclude Include="tree\Queue.h" />
     <ClInclude Include="tree\Sort.h" />
+    <ClInclude Include="tree\stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tree\BFS.cpp" />
