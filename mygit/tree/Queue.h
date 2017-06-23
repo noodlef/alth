@@ -13,7 +13,7 @@ class Queue{
 public:
 	typedef T1* iterator;
 	Queue();
-	~Queue() { delete[] ptr; };
+	~Queue() { delete[] ptr; };//
 	size_t Size() const;
 	bool empty();
 	iterator begin() const;
