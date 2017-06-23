@@ -13,7 +13,7 @@ struct Vertex {
 	int distance = INFINITE;
 	size_t parent = NIL;
 };
-const size_t vertexNum = 6;
+const size_t vertexNum = 6;                               // 顶点个数
 Vertex node[vertexNum];
 //********************************************************************
 void init(templa::LinkList<size_t> list[], size_t vertexNum, size_t source) {
@@ -48,7 +48,7 @@ void printBFS(std::ostream &os, Vertex node[], size_t vertexNum, size_t sourceVe
 //********************************************************************
 void BFS() {
 	templa::LinkList<size_t> list[vertexNum];                    // 邻接链表来表示边
-	size_t sourceVertex = 0;
+	size_t sourceVertex = 0;                                     // 源点
 	init(list, vertexNum, sourceVertex);
 	Queue<size_t> q;
 	q.push_back(sourceVertex);
