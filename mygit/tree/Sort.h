@@ -102,5 +102,29 @@ namespace templa{
 		insertionSort(lowerBound, upperBound, compare);
 		return;
 	}
+	//********************************************************
+	//快速排序---非递归（使用堆栈）
+	template<typename T1, typename T2>
+	void QuickSort(T1 lowerBound, T1 upperBound, T2 compare){
+		if (upperBound == lowerBound)
+			return;
+		T1 q;
+		templa::Stack<T1> myStack;
+		myStack.push(lowerBound);
+		myStack.push(upperBound);
+		while (!myStack.stackEmpty()){
+			upperBound = myStack.pop();
+			lowerBound = myStack.pop();
+			if (upperBound - lowerBound > MINIMUM_ARRY_LENGTH){
+				q = partition(lowerBound, upperBound, compare);
+				myStack.push(lowerBound);
+				myStack.push(q);
+				myStack.push(q);
+				myStack.push(upperBound);
+			}
+			else
+				insertionSort(lowerBound, upperBound, compare);
+		}
+	}
 }
 #endif
