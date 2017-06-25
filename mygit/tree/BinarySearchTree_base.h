@@ -35,7 +35,7 @@ namespace Tree {
 			ElementType *parent;
 			KeyType key;
 			SatalliteData p;
-			Color color = YELLOW;
+			Color color = YELLOW;                                 // 
 			ElementType() = default;
 			ElementType(KeyType k, SatalliteData s, Color col = YELLOW);
 		};

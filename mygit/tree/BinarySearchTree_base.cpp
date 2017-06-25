@@ -1,6 +1,6 @@
 #include"BinarySearchTree_base.h"
 using namespace Tree;
-//**************************
+//*************************************************************
 std::ostream& Tree::
 print(std::ostream &os, const BinarySearchTree &tree)
 {
@@ -9,7 +9,7 @@ print(std::ostream &os, const BinarySearchTree &tree)
 	tree.inorderTreeWalk(p);
 	return os;
 }
-//***************************
+//***************************************************************
 void BinarySearchTree::
 inorderTreeWalk(const ElementType *p) const {
 	if (p == nil) {
@@ -41,7 +41,7 @@ inorderTreeWalk(const ElementType *p) const {
 		}
 	}
 }
-//**************************
+//*****************************************************************
 std::ostream& BinarySearchTree::
 print(std::ostream &os, const ElementType *e) const {
 	os << "key " << e->key << " is ";
@@ -55,14 +55,14 @@ print(std::ostream &os, const ElementType *e) const {
 		os << "root" << std::endl;
 	return os;
 }
-//*************************
+//******************************************************************
 BinarySearchTree::
 BinarySearchTree() {
 	treeSize = 0;
 	nil = new ElementType();                                      //默认构造函数
 	root = nil;
 }
-//****************************
+//*******************************************************************
 Data BinarySearchTree::
 searchKey(KeyType k) const {
 	ElementType *temp = search(k);
@@ -70,7 +70,7 @@ searchKey(KeyType k) const {
 		return Data();                                            //抛出异常
 	return Data{ temp->key, temp->p };
 }
-//****************************
+//*******************************************************************
 Data BinarySearchTree::
 maximumKey() const
 {
@@ -80,7 +80,7 @@ maximumKey() const
 	else
 		return Data{ temp->key, temp->p };
 }
-//****************************
+//*********************************************************************
 Data BinarySearchTree::
 minimumKey() const{
 	ElementType *temp = minimum(root);
@@ -89,7 +89,7 @@ minimumKey() const{
 	else
 		return Data{ temp->key, temp->p };
 }
-//***************************
+//**********************************************************************
 Data BinarySearchTree::
 predecessorKey(KeyType k) const{
 	ElementType *t = search(k), *temp;
@@ -99,7 +99,7 @@ predecessorKey(KeyType k) const{
 	else
 		return Data{ temp->key, temp->p };
 }
-//*****************************
+//**********************************************************************
 Data BinarySearchTree::
 successorKey(KeyType k) const{
 	ElementType *t = search(k), *temp;
@@ -109,11 +109,11 @@ successorKey(KeyType k) const{
 	else
 		return Data{ temp->key, temp->p };
 }
-//***************************
+//**********************************************************************
 BinarySearchTree::ElementType::
 ElementType(KeyType k, SatalliteData s, Color col)
 	: key(k), p(s), color(col) { }
-//***************************
+//**********************************************************************
 void BinarySearchTree::
 add(const Data &dat) {
 	ElementType *temp = search(dat.key);
@@ -124,7 +124,7 @@ add(const Data &dat) {
 	ElementType e(dat.key, dat.p);                                            //构造函数
 	insert(e);
 }
-//*****************************
+//***********************************************************************
 void BinarySearchTree::
 insert(const ElementType &e) {
 	ElementType *z = new ElementType(e.key, e.p);               //构造函数
@@ -146,20 +146,20 @@ insert(const ElementType &e) {
 		temp->rchild = z;
 	++treeSize;
 }
-//************************
+//**************************************************************************
 BinarySearchTree::
 ~BinarySearchTree() {
 	clearUp(root);
 	delete nil;
 };
-//*************************
+//**************************************************************************
 void BinarySearchTree::
 set(ElementType *r) {
 	r->parent = nil;
 	r->lchild = nil;
 	r->rchild = nil;
 }
-//*************************
+//*************************************************************************
 void BinarySearchTree::
 deleteKey(KeyType k) {
 	ElementType *p = search(k);
@@ -171,7 +171,7 @@ deleteKey(KeyType k) {
 	}
 	deleteElement(p);
 }
-//*****************************
+//**************************************************************************
 void BinarySearchTree::
 deleteElement(ElementType *r) {
 	ElementType *pt = r, *succ;
@@ -212,7 +212,7 @@ deleteElement(ElementType *r) {
 	delete pt;
 	--treeSize;
 }
-//***************************************
+//**************************************************************************
 void BinarySearchTree::
 transplant(ElementType *r1, ElementType *r2) {
 	if (r1->parent == nil)
@@ -233,7 +233,7 @@ minimum(ElementType *r) const {
 		r = r->lchild;
 	return r;
 }
-//*******************************************
+//****************************************************************************
 BinarySearchTree::ElementType* BinarySearchTree::
 maximum(ElementType *r) const {
 	if (r == nil)
@@ -242,7 +242,7 @@ maximum(ElementType *r) const {
 		r = r->rchild;
 	return r;
 }
-//****************************************
+//***************************************************************************
 BinarySearchTree::ElementType* BinarySearchTree::
 search(KeyType k) const {
 	ElementType *pr = root;
@@ -254,7 +254,7 @@ search(KeyType k) const {
 	}
 	return pr;
 }
-//**************************************
+//****************************************************************************
 BinarySearchTree::ElementType* BinarySearchTree::
 successor(ElementType *r) const {
 	if (r == nil)
@@ -268,7 +268,7 @@ successor(ElementType *r) const {
 	}
 	return temp;
 }
-//**************************************
+//****************************************************************************
 BinarySearchTree::ElementType* BinarySearchTree::
 predecessor(ElementType *r) const {
 	if (r == nil)
@@ -282,7 +282,7 @@ predecessor(ElementType *r) const {
 	}
 	return temp;
 }
-//**********************************
+//*****************************************************************************
 void BinarySearchTree::
 clearUp(ElementType *r) {
 	if (r != nil) {

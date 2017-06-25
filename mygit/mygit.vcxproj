@@ -19,14 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="tree\BinarySearchTree_base.h" />
     <ClInclude Include="tree\LinkList.h" />
     <ClInclude Include="tree\PriorityQueue.h" />
     <ClInclude Include="tree\Queue.h" />
     <ClInclude Include="tree\Sort.h" />
+    <ClInclude Include="tree\TreapTree.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tree\BFS.cpp" />
-    <ClCompile Include="tree\源.cpp" />
+    <ClCompile Include="tree\BinarySearchTree_base.cpp" />
+    <ClCompile Include="tree\test.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{372D2894-C245-44BA-8B7E-D963BBB30CEC}</ProjectGuid>

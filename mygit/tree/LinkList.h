@@ -14,7 +14,7 @@ namespace templa {
 		void insert(std::initializer_list<T1> lis);
 		T1 pop_front();                                       
 		T1 pop_back();                                            
-		T1 operator[](size_t index);                                          // 0£¬1£¬...n-1
+		T1& operator[](size_t index);                                          // 0£¬1£¬...n-1
 		bool empty() const;
 		size_t size() const;
 	private:
@@ -133,7 +133,7 @@ namespace templa {
 	}
 	//***************************
 	template<typename T1>
-	T1 LinkList<T1>::
+	T1& LinkList<T1>::
 		operator[](size_t index) {
 		if (index < 0 || index >= elementCnt)
 			//throw std::string("out of index");

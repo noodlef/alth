@@ -4,9 +4,10 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include"stack.h"
 #include"Queue.h"
 //*********************************************************************
-enum Color{ WHITE, BLACK, GREY, INFINITE = 65535, NIL = -1 };
+enum Color{WHITE, BLACK, GREY, INFINITE = 65535, NIL = -1};
 struct Vertex {
 	size_t v;                                              // 节点编号
 	Color color = WHITE;
@@ -16,8 +17,8 @@ struct Vertex {
 };
 struct Edge{
 	typedef size_t property;
-	size_t tail;
-	property pro;                                         //  0,1,2,3分别表示深度优先搜索的 树边，前向边， 后向边， 横向边
+	size_t tail ;
+	property pro ;                                         //  0,1,2,3分别表示深度优先搜索的 树边，前向边， 后向边， 横向边
 };
 const size_t vertexNum = 6;
 Vertex node[vertexNum];
@@ -27,41 +28,41 @@ void init(templa::LinkList<Edge> list[], size_t vertexNum) {
 	for (int i = 0; i != vertexNum; ++i) {
 		node[i].v = i;
 	}
-	Edge e = { 1, INFINITE };
+	Edge e= { 1,INFINITE };
 	list[0].push_back(e);
-	e = { 3, INFINITE };
+	e = { 3 ,INFINITE };
 	list[0].push_back(e);
-	e = { 4, INFINITE };
+	e = { 4,INFINITE };
 	list[1].push_back(e);
-	e = { 4, INFINITE };
+	e = { 4,INFINITE };
 	list[2].push_back(e);
-	e = { 5, INFINITE };
+	e = { 5,INFINITE };
 	list[2].push_back(e);
-	e = { 1, INFINITE };
+	e = { 1,INFINITE };
 	list[3].push_back(e);
-	e = { 3, INFINITE };
+	e = { 3,INFINITE };
 	list[4].push_back(e);
-	e = { 5, INFINITE };
+	e = { 5,INFINITE };
 	list[5].push_back(e);
 }
 //********************************************************************
 void printBFS(std::ostream &os, Vertex node[], size_t vertexNum, size_t sourceVertex) {
-	os << std::left
-		<< std::setw(12) << "vertex"
-		<< std::setw(25) << "distance to sourceVertex(" << sourceVertex << ")"
-		<< "         "
-		<< std::setw(12) << "parent vertex" << std::endl;
+	os << std::left 
+	   << std::setw(12) << "vertex"
+	   << std::setw(25) << "distance to sourceVertex(" << sourceVertex << ")"
+	   <<"         "
+	   << std::setw(12) << "parent vertex" << std::endl;
 	for (int i = 0; i != vertexNum; ++i) {
 		os << std::left
-			<< std::setw(12) << node[i].v;
+		   << std::setw(12) << node[i].v;  
 		if (node[i].parent == NIL) {
 			os << std::setw(36) << "INFINITY"
-				<< std::setw(12) << "NIL" << std::endl;
+			   << std::setw(12) << "NIL" << std::endl;
 		}
 		else {
 			os << std::setw(36) << node[i].distance
-				<< std::setw(12) << node[i].parent << std::endl;
-		}
+			   << std::setw(12) << node[i].parent << std::endl;
+			}
 	}
 }
 //********************************************************************
@@ -99,7 +100,7 @@ void property(templa::LinkList<Edge> list[], size_t vertexNum) {
 				if (node[vertex].fTime < node[i].sTime)
 					list[i][j].pro = 3;
 				else {
-					if (node[i].sTime < node[vertex].sTime)
+					if(node[i].sTime < node[vertex].sTime)
 						list[i][j].pro = 1;
 					else
 						list[i][j].pro = 2;
@@ -123,6 +124,42 @@ void property(templa::LinkList<Edge> list[], size_t vertexNum) {
 	}
 }
 //********************************************************************
+// 深度优先搜索———非递归调用方式
+void deepFirstSearch() {
+	templa::LinkList<Edge> list[vertexNum];   //邻接表表示边
+	init(list, vertexNum);
+	templa::Stack<size_t> myStack;
+	for (size_t i = 0; i != vertexNum; ++i) {
+		size_t vertex = vertexNum - i - 1;                                //              i
+		myStack.push(vertex);
+	}
+	size_t time = 0;
+	while (!myStack.stackEmpty()) {
+		size_t vertex = myStack.pop();
+		if (node[vertex].color == WHITE) {
+			++time;
+			node[vertex].sTime = time;
+			node[vertex].color = GREY;
+			myStack.push(vertex);
+			size_t counter = list[vertex].size();
+			for (size_t i = 0; i != counter; ++i) {
+				size_t t = list[vertex][counter - i - 1].tail;                       // i
+				if (node[t].color == WHITE) {
+					node[t].parent = vertex;
+					myStack.push(t);
+				}
+			}
+		}
+		else if (node[vertex].color == GREY) {
+			++time;
+			node[vertex].fTime = time;
+			node[vertex].color = BLACK;
+		}
+	}
+	property(list, vertexNum);                                                 // 求出深度优先搜索过程中条边的属性
+}
+//********************************************************************
+//深度优先搜索————递归调用方式
 void DFS_VISIT(size_t index, templa::LinkList<Edge> list[], size_t &time) {
 	++time;
 	node[index].sTime = time;
@@ -148,9 +185,9 @@ void DFS() {
 	size_t time = 0;
 	init(list, vertexNum);
 	for (size_t i = 0; i != vertexNum; ++i) {
-		if (node[i].color == WHITE)
+		if (node[i].color == WHITE) 
 			DFS_VISIT(i, list, time);
-	}
+		}
 	property(list, vertexNum);
 }
 //********************************************************************
@@ -161,18 +198,19 @@ void printDFS(std::ostream &os, Vertex node[], size_t vertexNum) {
 		<< std::setw(12) << "fTime" << std::endl;
 	for (int i = 0; i != vertexNum; ++i) {
 		os << std::left
-			<< std::setw(12) << node[i].v
-			<< std::setw(12) << node[i].sTime
-			<< std::setw(12) << node[i].fTime << std::endl;
+		   << std::setw(12) << node[i].v
+		   << std::setw(12) << node[i].sTime
+		   << std::setw(12) << node[i].fTime << std::endl;
 
 	}
 }
 //*********************************************************************
 int main() {
 	//DFS();
-	//printDFS(std::cout, node, 6);
-	BFS();
-	printBFS(std::cout, node, 6, 1);
+	deepFirstSearch();
+	printDFS(std::cout, node, 6);
+	//BFS();
+	//printBFS(std::cout, node,6, 1);
 	system("pause");
 	return 0;
 }
